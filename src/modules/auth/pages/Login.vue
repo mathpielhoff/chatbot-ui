@@ -27,15 +27,13 @@
 </template>
 
 <script>
-import axios from "axios";
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import Button from "primevue/button";
 import Message from "primevue/message";
-
+import { useAuthStore } from '@/components/common/useAuthStore'; // Vérifie que le chemin est correct
 
 // Configuration de l'URL de l'API
-const API_URL = "http://127.0.0.1:8000/auth/login"; // Remplace cette URL par celle de ton API
 
 export default {
   components: {
@@ -53,21 +51,24 @@ export default {
   },
   methods: {
     async handleLogin() {
+      const authStore = useAuthStore(); // Récupération du store d'authentification
       try {
-        const response = await axios.post(API_URL, {
-          username: this.username,
-          password: this.password,
-        });
-        const token = response.data.access_token;
-        localStorage.setItem("access_token", token); // Stocker le token
+        // Appeler la méthode `login` du store pour enregistrer le token
+        authStore.login(this.username,this.password );
+
+        // Réinitialiser l'erreur et rediriger
         this.error = false;
+        this.$router.push('/dashboard'); // Redirection vers la page "dashboard"
       } catch (err) {
-        this.error= true;
+        // En cas d'erreur, afficher le message
+        this.error = true;
+        console.error('Erreur lors de la connexion:', err);
       }
     },
   },
 };
 </script>
+
 
 <style>
 /* Conteneur principal */

@@ -1,18 +1,29 @@
 <script setup>
-import HelloWorld from './views/HelloWorld.vue';
+import { useAuthStore } from '@/components/common/useAuthStore'; // Vérifie que le chemin est correct
+import { computed } from 'vue';
 import Login from './modules/auth/pages/Login.vue';
+import Dashboard from './modules/dashboard/pages/Dashboard.vue'; // Exemple d'autre page
+import AppMenuBar from './views/AppMenuBar.vue';
+
+// Utilisation du store Pinia
+const authStore = useAuthStore();
+
+// Définir la propriété computed
+const isAuthenticated = computed(() => authStore.isAuthenticated);
 </script>
 
 <template>
   <div class="app-container">
     <header class="header">
       <div class="wrapper">
-        <HelloWorld />
+        <AppMenuBar />
       </div>
     </header>
 
     <main class="main-content">
-      <Login />
+      <!-- Vérification de l'état d'authentification -->
+      <Login v-if="!isAuthenticated" />
+      <Dashboard v-else />
     </main>
   </div>
 </template>
