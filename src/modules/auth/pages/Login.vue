@@ -1,26 +1,16 @@
 <template>
   <div class="card flex justify-center p-4 login-container">
     <div class="form-wrapper">
-      <h2>Login</h2>
-      <form @submit.prevent="handleLogin" class="flex flex-col gap-4 w-full sm:w-56">
-        <div class="flex flex-col gap-2">
-          <InputText 
-            id="username" 
-            v-model="username" 
-            placeholder="Nom d'utilisateur" 
-            class="p-inputtext-lg" 
-          />
-        </div>
-        <div class="flex flex-col gap-2">
-        <Password id="password" v-model="password" :feedback="false"  placeholder="Password" class="p-inputtext-lg"/>
-        </div>
-        <Button 
-          type="submit" 
-          severity="secondary" 
-          label="Se connecter" 
-          class="p-button-lg" 
-        />
-      </form>
+      <h2 class="green">Login</h2>
+      <form @submit.prevent="handleLogin" class="form">
+      <div class="field">
+        <InputText id="username" v-model="username" placeholder="Nom d'utilisateur" />
+      </div>
+      <div class="field">
+        <Password id="password" v-model="password" :feedback="false" placeholder="Mot de passe" />
+      </div>
+      <Button type="submit" severity="secondary" label="Se connecter" class="submit-btn" />
+    </form>
       <Message v-if="error" :key="1" severity="error" class="mt-4">Nom d'utilisateur ou mot de passe incorrect</Message>
     </div>
   </div>
@@ -81,13 +71,34 @@ export default {
 }
 
 /* Wrapper pour aligner les éléments */
-.form-wrapper {
-  width: 100%;
-  text-align: center;
-}
 
 /* Espacement des messages d'erreur */
 .mt-4 {
   margin-top: 1rem;
+}
+
+.form-wrapper {
+  width: 100%;
+  text-align: center;
+  padding:1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* Espacement entre le titre et le formulaire */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Espacement uniforme entre les champs */
+  padding: 2rem;
+  border: 1px solid #ddd; /* Bordure optionnelle */
+  border-radius: 8px; /* Coins arrondis */
+  background-color: #fff; /* Couleur de fond */
+}
+
+
+.submit-btn {
+  margin-top: 1rem; /* Espacement au-dessus du bouton */
 }
 </style>

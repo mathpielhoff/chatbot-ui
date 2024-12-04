@@ -1,34 +1,38 @@
 <template>
-  <Menubar :model="menuItems" />
+  <Menubar :model="menuItems" class="menubar-custom">
+    <template #start>
+      <!-- Contenu à gauche -->
+      <Button label="Dashboard" icon="pi pi-home" class="p-button-text" @click="goToDashboard" />
+    </template>
+    <template #end>
+      <!-- Contenu à droite -->
+      <Button label="Logout" icon="pi pi-sign-out" class="p-button-text" @click="authStore.logout" />
+    </template>
+  </Menubar>
 </template>
 
 <script>
 import { useAuthStore } from "@/components/common/useAuthStore"; // Ajustez le chemin vers votre store
 import Menubar from "primevue/menubar";
+import Button from "primevue/button";
+import { useRouter } from "vue-router";
 
 export default {
   components: {
     Menubar,
+    Button,
   },
   setup() {
     const authStore = useAuthStore();
+    const router = useRouter();
 
-    const menuItems = [
-      {
-        label: "Dashboard",
-        icon: "pi pi-home",
-        url: "/dashboard", // Lien vers la route dashboard
-      },
-      {
-        label: "Logout",
-        icon: "pi pi-sign-out",
-        command: () => {
-          authStore.logout();
-        },
-      },
-    ];
+    const menuItems = []; // Menu principal vide car nous utilisons les slots `start` et `end`.
 
-    return { menuItems };
+    const goToDashboard = () => {
+      router.push("/dashboard");
+    };
+
+    return { menuItems, authStore, goToDashboard };
   },
 };
 </script>
@@ -38,5 +42,10 @@ export default {
   background-color: #f8f9fa; /* Couleur de fond */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
   border-radius: 0; /* Sans bordures */
+}
+
+.menubar-custom .p-button-text {
+  font-size: 1rem;
+  margin: 0 0.5rem; /* Ajuste l'espacement */
 }
 </style>
