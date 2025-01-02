@@ -1,7 +1,11 @@
 <template>
-  <div class="card flex justify-center p-4 login-container">
+    <div class="page-container">
+      <header class="page-header">
+      <h1>Se connecter</h1>
+    </header>
+    <main class="page-content">
     <div class="form-wrapper">
-      <h2 class="green">Login</h2>
+
       <form @submit.prevent="handleLogin" class="form">
       <div class="field">
         <InputText id="username" v-model="username" placeholder="Nom d'utilisateur" />
@@ -13,7 +17,8 @@
     </form>
       <Message v-if="error" :key="1" severity="error" class="mt-4">Nom d'utilisateur ou mot de passe incorrect</Message>
     </div>
-  </div>
+  </main>
+    </div>
 </template>
 
 <script>

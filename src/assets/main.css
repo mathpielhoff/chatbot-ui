@@ -1,7 +1,7 @@
 @import './base.css';
 
 #app {
-  padding: 1rem;
+  padding: 0rem;
   font-weight: normal;
 }
 
@@ -30,4 +30,33 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
+}
+/* Conteneur principal */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 75%;
+  height: 100vh;
+}
+
+/* Titre en haut à gauche */
+.page-header h1 {
+  color: #28a745; /* Vert */
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 10px;
+
+}
+
+/* Contenu principal */
+.page-content {
+  flex: 1; /* Prend l'espace disponible */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Aligne les éléments en haut */
+  gap: 1rem; /* Espacement entre les éléments */
+  
 }

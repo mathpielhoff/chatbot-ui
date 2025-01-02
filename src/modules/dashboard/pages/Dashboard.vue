@@ -1,11 +1,11 @@
 <template>
-  <div class="dashboard-container">
-    <header class="dashboard-header">
+  <div class="page-container">
+    <header class="page-header">
       <h1>Bienvenue dans le tableau de bord</h1>
     </header>
-    <main class="dashboard-content">
+    <main class="page-content">
       <!-- Contenu principal -->
-      <Button label="Se déconnecter" @click="getUserInfo" class="p-button-danger" />
+      <Button icon="pi pi-user" iconPos="right" label="Infos utilisateurs" @click="getUserInfo" />
       <div v-if="userInfo" class="user-info">
         <p><strong>Utilisateur :</strong> {{ userInfo.username }}</p>
         <p><strong>Role :</strong> {{ userInfo.role }}</p>
@@ -13,6 +13,7 @@
       <div v-if="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
+      <Button icon="pi pi-comment" iconPos="right" label="ChatBot"/>
     </main>
   </div>
 </template>
@@ -44,32 +45,6 @@ export default {
 </script>
 
 <style>
-/* Conteneur principal */
-.dashboard-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
-  background-color: #f4f6f8; /* Couleur de fond */
-  padding: 1rem;
-}
-
-/* Titre en haut à gauche */
-.dashboard-header h1 {
-  color: #28a745; /* Vert */
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-/* Contenu principal */
-.dashboard-content {
-  flex: 1; /* Prend l'espace disponible */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Aligne les éléments en haut */
-  gap: 1rem; /* Espacement entre les éléments */
-}
-
 /* Style des informations utilisateur */
 .user-info {
   background: #ffffff;

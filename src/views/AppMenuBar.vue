@@ -3,10 +3,12 @@
     <template #start>
       <!-- Contenu à gauche -->
       <Button label="Dashboard" icon="pi pi-home" class="p-button-text" @click="goToDashboard" />
+      <Button label="ChatBot" icon="pi pi-comment" class="p-button-text" @click="goToChatBot" />
+
     </template>
     <template #end>
       <!-- Contenu à droite -->
-      <Button label="Logout" icon="pi pi-sign-out" class="p-button-text" @click="authStore.logout" />
+      <Button label="Logout" icon="pi pi-sign-out" class="p-button-text" @click="handleLogout" />
     </template>
   </Menubar>
 </template>
@@ -31,10 +33,18 @@ export default {
     const goToDashboard = () => {
       router.push("/dashboard");
     };
+    const goToChatBot = () => {
+      router.push("/chatbot");
+    };
 
-    return { menuItems, authStore, goToDashboard };
+    const handleLogout=() => {
+      authStore.logout(router); 
+
+    }
+    return { menuItems, authStore, goToDashboard, goToChatBot, handleLogout };
   },
 };
+
 </script>
 
 <style>

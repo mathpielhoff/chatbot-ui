@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../modules/auth/pages/Login.vue';
 import Dashboard from '../modules/dashboard/pages/Dashboard.vue'; // Page après connexion
+import Chatbot from '@/modules/chatbot/pages/Chatbot.vue';
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -8,6 +9,11 @@ const routes = [
   { 
     path: '/dashboard', 
     component: Dashboard, 
+    meta: { requiresAuth: true }, // Protège la route
+  }, 
+  { 
+    path: '/chatbot', 
+    component: Chatbot, 
     meta: { requiresAuth: true }, // Protège la route
   },
 ];

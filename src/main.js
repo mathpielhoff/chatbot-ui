@@ -1,4 +1,5 @@
 import './assets/main.css'
+import './assets/styles.scss'
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -7,6 +8,9 @@ import Aura from '@primevue/themes/aura';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import 'primeicons/primeicons.css'; // Import des icônes
+import Button from 'primevue/button';
+
+import DataView from 'primevue/dataview';
 
 import router from './router'; // Import du routeur
 
@@ -37,6 +41,8 @@ const pinia = createPinia();
 app.use(pinia);
 
 app.component('Toast', Toast); // Enregistrement du composant Toast
+app.component('Button', Button);
+app.component('DataView', DataView)
 app.use(ToastService); // Utilisation du service Toast
 app.use(router); // Utilisation du routeur
 

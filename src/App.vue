@@ -21,9 +21,7 @@ const isAuthenticated = computed(() => authStore.isAuthenticated);
     </header>
 
     <main class="main-content">
-      <!-- Vérification de l'état d'authentification -->
-      <Login v-if="!isAuthenticated" />
-      <Dashboard v-else />
+    <router-view></router-view>
     </main>
   </div>
 </template>

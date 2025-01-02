@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import api from '@/pluggins/axios';
+import { useRouter } from "vue-router";
 
 
 export const useAuthStore = defineStore('auth', {
@@ -21,9 +22,13 @@ export const useAuthStore = defineStore('auth', {
         throw new Error('Connexion échouée');
       }
     },
-    logout() {
+    logout(router) {
       this.token = null;
       localStorage.removeItem('access_token');
+      // Redirection après déconnexion
+      if(router){
+        router.push('/'); // Redirige vers la page d'accueil
+      }
     },
   },
 });
